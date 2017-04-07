@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="login-page">
+        <div class="form">
+          <form class="login-form" (submit)="loginWithEmail($event, email.value, password.value)">
+            <input #email type="text" placeholder="Email" required=""/>
+            <input #password type="password" placeholder="Password" required=""/>
+            <button>Login</button>
+            <div class="oauth" (click)="loginWithGoogle()">Login with Google</div>
+            <p class="message">Not registered? <a [routerLink]="['/register']">Register now</a></p>
+            <div *ngIf="error" class="error">
+              {{error}}
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
