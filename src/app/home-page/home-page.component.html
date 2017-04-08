@@ -14,7 +14,7 @@
         </div>
         <!-- List group for Wishlist titles -->
         <ul class="list-group" *ngFor="let wishlist of wishlists | async">
-          <li class="list-group-item" *ngIf="afService.email == wishlist.ownerEmail"> >
+          <li class="list-group-item" *ngIf="afService.email == wishlist.ownerEmail">
             <a class="wishlistItem" [routerLink]="['/wishlists/', wishlist.$key]">{{ wishlist.title }}</a>
           </li>
         </ul>

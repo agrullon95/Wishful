@@ -6,9 +6,14 @@
 
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title text-center">{{currentWishlist}}</h3>
+          <h3 class="panel-title text-center">{{title}}</h3>
         </div>
-        <!-- List group for Wishlist titles -->
+        <!-- List group for Wishlist items -->
+        <ul class="list-group" *ngFor="let item of items | async">
+          <li class="list-group-item">
+            {{item.$value}}
+          </li>
+        </ul>
 
 
       <!-- <div *ngFor="let c of currentWishlist | async">

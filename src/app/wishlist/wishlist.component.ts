@@ -12,7 +12,7 @@ export class WishlistComponent implements OnInit {
   public error: any;
   public currentWishlistKey;
   public title: FirebaseObjectObservable<any>;
-  public wishlistItems: any[] = [];
+  public items: FirebaseListObservable<any>;
 
   constructor(private afService: AF, private router: Router, private activatedRoute: ActivatedRoute) {
     let params: any = this.activatedRoute.snapshot.params;
@@ -23,6 +23,8 @@ export class WishlistComponent implements OnInit {
       //this.items = snapshot.val().items;
       //console.log(this.currentWishlist);
     });
+
+    this.items = this.afService.af.database.list('/wishlists/' + this.currentWishlistKey + '/items');
 
   }
 
