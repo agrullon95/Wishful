@@ -12,6 +12,7 @@
         <ul class="list-group" *ngFor="let item of items | async">
           <li class="list-group-item">
             {{item.$value}}
+            <span (click)="deleteWishlistItem(item.$key)" id="deleteItem">X</span>
           </li>
         </ul>
 

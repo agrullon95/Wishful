@@ -21,7 +21,7 @@ export class WishlistComponent implements OnInit {
 
     this.afService.af.database.object('/wishlists/' + this.currentWishlistKey).$ref.once('value').then(snapshot => {
       this.title = snapshot.val().title;
-      console.log(this.title);
+      //console.log(this.title);
     });
 
     this.items = this.afService.af.database.list('/wishlists/' + this.currentWishlistKey + '/items');
@@ -29,19 +29,25 @@ export class WishlistComponent implements OnInit {
   }
 
   // add new wishlist item and show error for 1 second
-  addWishlistItem(){
+  addWishlistItem() {
     if (this.newWishlistItem == null || this.newWishlistItem == ""){
       this.error = true;
       //console.log(this.error);
     }
     else {
       this.items.push(this.newWishlistItem);
-      this.newWishlistItem = '';
+      this.newWishlistItem = "";
     }
     setTimeout(function() {
        this.error = false;
        //console.log(this.error);
    }.bind(this), 1000);
+  }
+
+  //delete wishlist item
+  deleteWishlistItem(key) {
+    //console.log(key);
+    this.items.remove(key);
   }
 
   ngOnInit() {

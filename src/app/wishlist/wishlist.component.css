@@ -15,6 +15,15 @@
   background-color: darkgreen;
 }
 
+#deleteItem {
+  float: right;
+}
+
+#deleteItem:hover {
+  color: red;
+  cursor: pointer;
+}
+
 .error {
   margin: 15px 0 0;
   color: red;
