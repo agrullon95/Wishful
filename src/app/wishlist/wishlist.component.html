@@ -15,10 +15,15 @@
           </li>
         </ul>
 
-
-      <!-- <div *ngFor="let c of currentWishlist | async">
-      {{ c }}
-      </div> -->
+        <ul class="list-group">
+          <li class="list-group-item text-center">
+              <input id="newWishlistItemInput" #item type="text" placeholder="Enter a new wishlist item" [(ngModel)]="newWishlistItem" (keyup.enter)="addWishlistItem()" required=""/>
+              <button id="newWishlistItemButton" (click)="addWishlistItem()">Add</button>
+          </li>
+        </ul>
+        <div *ngIf="error" class="error text-center">
+          Invalid Input!
+        </div>
 
 
     </div>

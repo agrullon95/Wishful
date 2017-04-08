@@ -22,7 +22,6 @@ export class AF {
 
     //this.messages = this.af.database.list('messages');
     this.wishlists = this.af.database.list('wishlists');
-    this.singlewishlist = this.af.database.list('/wishlists/-KfrvkHYHbfi_iFFSz-T');
     this.users = this.af.database.list('users');
   }
 

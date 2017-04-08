@@ -1,0 +1,22 @@
+#newWishlistItemInput {
+  width: 70%;
+  border: 2px solid black;
+  padding: 10px 10px;
+}
+
+#newWishlistItemButton {
+  border-style: none;
+  background-color: green;
+  color: white;
+  width: 20%;
+}
+
+#newWishlistItemButton:hover {
+  background-color: darkgreen;
+}
+
+.error {
+  margin: 15px 0 0;
+  color: red;
+  font-size: 12px;
+}

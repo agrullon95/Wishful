@@ -10,6 +10,7 @@ import {FirebaseListObservable, FirebaseObjectObservable} from "angularfire2";
 })
 export class WishlistComponent implements OnInit {
   public error: any;
+  public newWishlistItem: any;
   public currentWishlistKey;
   public title: FirebaseObjectObservable<any>;
   public items: FirebaseListObservable<any>;
@@ -20,12 +21,27 @@ export class WishlistComponent implements OnInit {
 
     this.afService.af.database.object('/wishlists/' + this.currentWishlistKey).$ref.once('value').then(snapshot => {
       this.title = snapshot.val().title;
-      //this.items = snapshot.val().items;
-      //console.log(this.currentWishlist);
+      console.log(this.title);
     });
 
     this.items = this.afService.af.database.list('/wishlists/' + this.currentWishlistKey + '/items');
 
+  }
+
+  // add new wishlist item and show error for 1 second
+  addWishlistItem(){
+    if (this.newWishlistItem == null || this.newWishlistItem == ""){
+      this.error = true;
+      //console.log(this.error);
+    }
+    else {
+      this.items.push(this.newWishlistItem);
+      this.newWishlistItem = '';
+    }
+    setTimeout(function() {
+       this.error = false;
+       //console.log(this.error);
+   }.bind(this), 1000);
   }
 
   ngOnInit() {
