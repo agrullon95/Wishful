@@ -1,3 +1,17 @@
+/* Override */
+.panel-title {
+  font-size: 30px;
+}
+
+#wishlistPanel, #unauthorizedText {
+  visibility: hidden;
+}
+
+#completedItem {
+  float: right;
+  margin-right: 5px;
+}
+
 #newWishlistItemInput {
   width: 70%;
   border: 2px solid black;
@@ -22,6 +36,18 @@
 #deleteItem:hover {
   color: red;
   cursor: pointer;
+}
+
+.hide-class {
+  visibility: hidden;
+}
+
+.show-class {
+  visibility: visible !important;
+}
+
+.text-strike {
+  text-decoration: line-through;
 }
 
 .error {

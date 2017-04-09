@@ -122,7 +122,6 @@ export class AF {
       title: title,
       ownerEmail: this.email,
       ownerName: this.displayName,
-      items: [],
       timestamp: Date.now()
     };
     this.wishlists.push(wishlist);

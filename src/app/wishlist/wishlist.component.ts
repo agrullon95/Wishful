@@ -11,9 +11,12 @@ import {FirebaseListObservable, FirebaseObjectObservable} from "angularfire2";
 export class WishlistComponent implements OnInit {
   public error: any;
   public newWishlistItem: any;
-  public currentWishlistKey;
+  public currentWishlistKey: any;
   public title: FirebaseObjectObservable<any>;
+  public ownerEmail: FirebaseObjectObservable<any>;
   public items: FirebaseListObservable<any>;
+  public completedToggle: false;
+  public uid: any;
 
   constructor(private afService: AF, private router: Router, private activatedRoute: ActivatedRoute) {
     let params: any = this.activatedRoute.snapshot.params;
@@ -21,6 +24,7 @@ export class WishlistComponent implements OnInit {
 
     this.afService.af.database.object('/wishlists/' + this.currentWishlistKey).$ref.once('value').then(snapshot => {
       this.title = snapshot.val().title;
+      this.ownerEmail = snapshot.val().ownerEmail;
       //console.log(this.title);
     });
 
@@ -35,7 +39,11 @@ export class WishlistComponent implements OnInit {
       //console.log(this.error);
     }
     else {
-      this.items.push(this.newWishlistItem);
+      var newItem = {
+        title: this.newWishlistItem,
+        completed: false
+      }
+      this.items.push(newItem);
       this.newWishlistItem = "";
     }
     setTimeout(function() {
@@ -48,6 +56,17 @@ export class WishlistComponent implements OnInit {
   deleteWishlistItem(key) {
     //console.log(key);
     this.items.remove(key);
+  }
+
+  //change checkbox value
+  checkboxChange(e, key) {
+    var itemPath = this.afService.af.database.list('/wishlists/' + this.currentWishlistKey + '/items/' + key);
+    if (e.target.checked) {
+      itemPath.$ref.ref.update({'completed' : true});
+    }
+    else {
+      itemPath.$ref.ref.update({'completed' : false});
+    }
   }
 
   ngOnInit() {
