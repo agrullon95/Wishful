@@ -2,3 +2,28 @@
     cursor: pointer;
     color: red;
 }
+
+
+/*
+Code snippet by maridlcrmn for Bootsnipp.com
+*/
+.navbar-nav.navbar-right .btn {
+  position: relative;
+  z-index: 2;
+  padding: 4px 20px;
+  margin: 10px auto;
+}
+.btn.btn-circle {
+  border-radius: 50px;
+}
+.btn.btn-outline {
+  background-color: transparent;
+}
+
+@media screen and (max-width: 767px) {
+    .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 15px; padding-right: 15px; }
+
+    .navbar .nav-collapse { margin: 7.5px auto; padding: 0; }
+    .navbar .nav-collapse .navbar-form { margin: 0; }
+    .nav-collapse>li { float: none; }
+}

@@ -14,20 +14,22 @@
         <!-- List group for Wishlist items -->
         <ul class="list-group" *ngFor="let item of items | async">
           <li class="list-group-item">
-            <span [ngClass]="{'text-strike' : item.completed}">{{item.title}}</span>
-            <span (click)="deleteWishlistItem(item.$key)" id="deleteItem">&times;</span>
             <input type="checkbox" id="completedItem" [(ngModel)]="item.completed" (change)="checkboxChange($event, item.$key)">
+            <span id="itemName" [ngClass]="{'text-strike' : item.completed}">{{item.title}}</span>
+            <span (click)="deleteWishlistItem(item.$key)" id="deleteItem">&times;</span>
           </li>
         </ul>
       </div>
 
+      <!-- Add item to wishlist -->
       <div id="addItem" class="text-center col-sm-6" [ngClass]="{'show-class' : afService.email == ownerEmail}">
           <input id="newWishlistItemInput" #item type="text" placeholder="Enter a new wishlist item" [(ngModel)]="newWishlistItem" (keyup.enter)="addWishlistItem()" required=""/>
           <button id="newWishlistItemButton" (click)="addWishlistItem()">Add</button>
       </div>
 
+      <!-- Share wishlist with other users-->
       <div id="share" class="text-center col-sm-6" [ngClass]="{'show-class' : afService.email == ownerEmail}">
-          <input id="newWishlistItemInput" #share type="text" placeholder="Enter friend's email" [(ngModel)]="shareEmail" (keyup.enter)="shareWishlist()" required=""/>
+          <input id="newWishlistItemInput" #share type="text" placeholder="Enter friend's email (NOT WORKING YET)" [(ngModel)]="shareEmail" (keyup.enter)="shareWishlist()" required=""/>
           <button id="newWishlistItemButton" style="background-color: red;" (click)="shareWishlist()">Share</button>
       </div>
 

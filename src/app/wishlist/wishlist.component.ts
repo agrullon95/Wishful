@@ -29,14 +29,14 @@ export class WishlistComponent implements OnInit {
       //console.log(this.title);
     });
 
-    this.afService.af.database.object('/users').$ref.once('value').then(snapshot => {
-      console.log(snapshot.val());
-      for (var property in snapshot.val()) {
-        if (snapshot.val().hasOwnProperty(property)) {
-        console.log(snapshot.val()[property].email);
-        }
-      }
-    });
+    // this.afService.af.database.object('/users').$ref.once('value').then(snapshot => {
+    //   console.log(snapshot.val());
+    //   for (var property in snapshot.val()) {
+    //     if (snapshot.val().hasOwnProperty(property)) {
+    //     console.log(snapshot.val()[property].email);
+    //     }
+    //   }
+    // });
 
     this.items = this.afService.af.database.list('/wishlists/' + this.currentWishlistKey + '/items');
 

@@ -6,6 +6,7 @@ import {FirebaseObjectFactoryOpts} from "angularfire2/interfaces";
 export class AF {
   //public messages: FirebaseListObservable<any>;
   public users: FirebaseListObservable<any>;
+  public name: string;
   public displayName: string;
   public email: string;
   public user: FirebaseObjectObservable<any>;
@@ -90,6 +91,7 @@ export class AF {
    * @returns {firebase.Promise<void>}
    */
   saveUserInfoFromForm(uid, name, email) {
+    console.log(name);
     return this.af.database.object('registeredUsers/' + uid).set({
       name: name,
       email: email,

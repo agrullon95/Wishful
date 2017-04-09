@@ -12,20 +12,32 @@ export class RegistrationPageComponent implements OnInit{
 
   constructor(private afService: AF, private router: Router) { }
 
-  register(event, name, email, password) {
+  register(event, name, email, password, passwordAgain) {
     event.preventDefault();
-    this.afService.registerUser(email, password).then((user) => {
-      this.afService.saveUserInfoFromForm(user.uid, name, email).then(() => {
-        this.router.navigate(['']);
+    if (this.validateForm(password, passwordAgain)) {
+      this.afService.registerUser(email, password).then((user) => {
+        this.afService.saveUserInfoFromForm(user.uid, name, email).then(() => {
+          this.router.navigate(['']);
+        })
+          .catch((error) => {
+            this.error = error;
+          });
       })
         .catch((error) => {
           this.error = error;
+          console.log(this.error);
         });
-    })
-      .catch((error) => {
-        this.error = error;
-        console.log(this.error);
-      });
+    }
+    else {
+      console.log("Passwords don't match");
+    }
+  }
+
+  validateForm(password, passwordAgain) {
+    if (password === passwordAgain) {
+      return true;
+    }
+    return false;
   }
 
   ngOnInit(){}

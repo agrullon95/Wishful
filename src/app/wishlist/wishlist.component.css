@@ -3,12 +3,19 @@
   font-size: 30px;
 }
 
+#itemName {
+  font-size: 18px;
+}
+
 #wishlistPanel, #unauthorizedText, #addItem, #share {
   visibility: hidden;
 }
 
+#addItem, #share {
+  margin-top: 10px;
+}
+
 #completedItem {
-  float: right;
   margin-right: 5px;
 }
 

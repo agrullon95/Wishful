@@ -23,7 +23,7 @@ export class LoginPageComponent implements OnInit {
   loginWithGoogle() {
     this.afService.loginWithGoogle().then((data) => {
       // Send them to the homepage if they are logged in
-      console.log(data);
+      //console.log(data);
       this.afService.addUserInfo();
       this.router.navigate(['']);
     })
@@ -32,7 +32,10 @@ export class LoginPageComponent implements OnInit {
   loginWithEmail(event, email, password){
     event.preventDefault();
     this.afService.loginWithEmail(email, password).then((user) => {
-      console.log(user);
+      //console.log(user);
+      this.afService.af.database.list('/registeredUsers/' + user.uid).$ref.once('value').then(snapshot => {
+        this.afService.displayName = snapshot.val().name;
+      });
       this.router.navigate(['']);
     })
       .catch((error: any) => {
