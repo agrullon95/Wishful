@@ -2,6 +2,10 @@
   <div class="row">
     <div class="col-sm-12">
 
+      <div *ngIf="error" class="text-center alert alert-danger">
+        <p>{{errorMessage}}</p>
+      </div>
+
       <!-- PANEL FOR AUTHORIZED USER/ DISPLAYS WISHLIST AND ITEMS -->
       <div id="wishlistPanel" class="panel panel-default" [ngClass]="{'show-class' : afService.email == ownerEmail}">
         <div class="panel-heading">
@@ -15,24 +19,22 @@
             <input type="checkbox" id="completedItem" [(ngModel)]="item.completed" (change)="checkboxChange($event, item.$key)">
           </li>
         </ul>
+      </div>
 
-        <ul class="list-group">
-          <li class="list-group-item text-center">
-              <input id="newWishlistItemInput" #item type="text" placeholder="Enter a new wishlist item" [(ngModel)]="newWishlistItem" (keyup.enter)="addWishlistItem()" required=""/>
-              <button id="newWishlistItemButton" (click)="addWishlistItem()">Add</button>
-          </li>
-        </ul>
-        <div *ngIf="error" class="error text-center">
-          Invalid Input!
-        </div>
+      <div id="addItem" class="text-center col-sm-6" [ngClass]="{'show-class' : afService.email == ownerEmail}">
+          <input id="newWishlistItemInput" #item type="text" placeholder="Enter a new wishlist item" [(ngModel)]="newWishlistItem" (keyup.enter)="addWishlistItem()" required=""/>
+          <button id="newWishlistItemButton" (click)="addWishlistItem()">Add</button>
+      </div>
 
+      <div id="share" class="text-center col-sm-6" [ngClass]="{'show-class' : afService.email == ownerEmail}">
+          <input id="newWishlistItemInput" #share type="text" placeholder="Enter friend's email" [(ngModel)]="shareEmail" (keyup.enter)="shareWishlist()" required=""/>
+          <button id="newWishlistItemButton" style="background-color: red;" (click)="shareWishlist()">Share</button>
+      </div>
 
-    </div>
-
-    <!-- IF USER IS NOT AUTHORIZED TO VIEW WISHLIST, DISPLAY THIS TEXT-->
-    <div id="unauthorizedText" [ngClass]="{ 'show-class': afService.email != ownerEmail}">
-      <h1 style="text-align: center;">You are not authorized to view this page</h1>
-    </div>
+      <!-- IF USER IS NOT AUTHORIZED TO VIEW WISHLIST, DISPLAY THIS TEXT-->
+      <div id="unauthorizedText" [ngClass]="{ 'show-class': afService.email != ownerEmail}">
+        <h1 style="text-align: center;">You are not authorized to view this page</h1>
+      </div>
 
   </div>
 </div>

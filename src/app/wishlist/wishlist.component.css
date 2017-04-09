@@ -3,7 +3,7 @@
   font-size: 30px;
 }
 
-#wishlistPanel, #unauthorizedText {
+#wishlistPanel, #unauthorizedText, #addItem, #share {
   visibility: hidden;
 }
 
@@ -50,8 +50,8 @@
   text-decoration: line-through;
 }
 
-.error {
+/*.error {
   margin: 15px 0 0;
   color: red;
   font-size: 12px;
-}
+}*/

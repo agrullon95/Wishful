@@ -9,14 +9,15 @@ import {FirebaseListObservable, FirebaseObjectObservable} from "angularfire2";
   styleUrls: ['./wishlist.component.css']
 })
 export class WishlistComponent implements OnInit {
-  public error: any;
+  public error: Boolean;
+  public errorMessage: String;
   public newWishlistItem: any;
   public currentWishlistKey: any;
   public title: FirebaseObjectObservable<any>;
   public ownerEmail: FirebaseObjectObservable<any>;
   public items: FirebaseListObservable<any>;
   public completedToggle: false;
-  public uid: any;
+  public shareEmail: String;
 
   constructor(private afService: AF, private router: Router, private activatedRoute: ActivatedRoute) {
     let params: any = this.activatedRoute.snapshot.params;
@@ -28,6 +29,15 @@ export class WishlistComponent implements OnInit {
       //console.log(this.title);
     });
 
+    this.afService.af.database.object('/users').$ref.once('value').then(snapshot => {
+      console.log(snapshot.val());
+      for (var property in snapshot.val()) {
+        if (snapshot.val().hasOwnProperty(property)) {
+        console.log(snapshot.val()[property].email);
+        }
+      }
+    });
+
     this.items = this.afService.af.database.list('/wishlists/' + this.currentWishlistKey + '/items');
 
   }
@@ -36,6 +46,7 @@ export class WishlistComponent implements OnInit {
   addWishlistItem() {
     if (this.newWishlistItem == null || this.newWishlistItem == ""){
       this.error = true;
+      this.errorMessage = "Error: Input field cannot be empty";
       //console.log(this.error);
     }
     else {
@@ -48,8 +59,9 @@ export class WishlistComponent implements OnInit {
     }
     setTimeout(function() {
        this.error = false;
+       this.errorMessage = "";
        //console.log(this.error);
-   }.bind(this), 1000);
+   }.bind(this), 1500);
   }
 
   //delete wishlist item
@@ -67,6 +79,22 @@ export class WishlistComponent implements OnInit {
     else {
       itemPath.$ref.ref.update({'completed' : false});
     }
+  }
+
+  //share wishlist
+  shareWishlist() {
+    if (this.shareEmail == null || this.shareEmail == "" ) {
+      this.error = true;
+      this.errorMessage = "Error: Input field cannot be empty";
+    }
+    else {
+      console.log(this.shareEmail);
+    }
+    setTimeout(function() {
+       this.error = false;
+       this.errorMessage = "";
+       //console.log(this.error);
+   }.bind(this), 1500);
   }
 
   ngOnInit() {
