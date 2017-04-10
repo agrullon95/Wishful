@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
             this.afService.email = auth.google.email;
           }
           else {
-            this.afService.displayName = this.afService.name;
+            this.afService.displayName = auth.auth.email;
             this.afService.email = auth.auth.email;
           }
 

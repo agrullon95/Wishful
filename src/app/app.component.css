@@ -3,6 +3,10 @@
     color: red;
 }
 
+.navbar-brand {
+  padding: 10px 0px;
+}
+
 
 /*
 Code snippet by maridlcrmn for Bootsnipp.com
@@ -21,9 +25,27 @@ Code snippet by maridlcrmn for Bootsnipp.com
 }
 
 @media screen and (max-width: 767px) {
-    .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 15px; padding-right: 15px; }
 
-    .navbar .nav-collapse { margin: 7.5px auto; padding: 0; }
-    .navbar .nav-collapse .navbar-form { margin: 0; }
-    .nav-collapse>li { float: none; }
+    .navbar .navbar-collapse .navbar-right > li:last-child {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    .navbar .nav-collapse {
+      margin: 7.5px auto;
+      padding: 0;
+    }
+
+    .navbar .nav-collapse .navbar-form {
+      margin: 0;
+    }
+
+    .nav-collapse>li {
+      float: none;
+    }
+
+    .navbar-brand {
+      padding-left: 15px;
+    }
+
 }
