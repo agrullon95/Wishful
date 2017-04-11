@@ -6,6 +6,8 @@
 
 # dependencies
 /node_modules
+# Firebase Deploy (Cloud)
+/functions/node_modules
 
 # IDEs and editors
 /.idea
