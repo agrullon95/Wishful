@@ -10,14 +10,17 @@ import {FirebaseListObservable, FirebaseObjectObservable} from "angularfire2";
 })
 export class WishlistComponent implements OnInit {
   public error: Boolean;
-  public errorMessage: String;
+  public success: Boolean;
+  public flashMessage: String;
   public newWishlistItem: any;
+  public sharedEmailList: FirebaseListObservable<any>;
   public currentWishlistKey: any;
   public title: FirebaseObjectObservable<any>;
   public ownerEmail: FirebaseObjectObservable<any>;
   public items: FirebaseListObservable<any>;
   public completedToggle: false;
   public shareEmail: String;
+  public emailObj: FirebaseObjectObservable<any>;
 
   constructor(private afService: AF, private router: Router, private activatedRoute: ActivatedRoute) {
     let params: any = this.activatedRoute.snapshot.params;
@@ -38,6 +41,11 @@ export class WishlistComponent implements OnInit {
     //   }
     // });
 
+    this.afService.af.database.object('/wishlists/' + this.currentWishlistKey + '/shared').$ref.on('value', snapshot => {
+      this.emailObj = snapshot.val();
+    });
+    this.sharedEmailList = this.afService.af.database.list('/wishlists/' + this.currentWishlistKey + '/shared');
+
     this.items = this.afService.af.database.list('/wishlists/' + this.currentWishlistKey + '/items');
 
   }
@@ -46,7 +54,7 @@ export class WishlistComponent implements OnInit {
   addWishlistItem() {
     if (this.newWishlistItem == null || this.newWishlistItem == ""){
       this.error = true;
-      this.errorMessage = "Error: Input field cannot be empty";
+      this.flashMessage = "Error: Input field cannot be empty";
       //console.log(this.error);
     }
     else {
@@ -57,11 +65,7 @@ export class WishlistComponent implements OnInit {
       this.items.push(newItem);
       this.newWishlistItem = "";
     }
-    setTimeout(function() {
-       this.error = false;
-       this.errorMessage = "";
-       //console.log(this.error);
-   }.bind(this), 1500);
+    this.messageFlash();
   }
 
   //delete wishlist item
@@ -81,18 +85,55 @@ export class WishlistComponent implements OnInit {
     }
   }
 
-  //share wishlist
+  //Share wishlist form
   shareWishlist() {
     if (this.shareEmail == null || this.shareEmail == "" ) {
       this.error = true;
-      this.errorMessage = "Error: Input field cannot be empty";
+      this.flashMessage = "Error: Input field cannot be empty.";
+      this.messageFlash();
     }
+    else if (!this.validateEmail(this.shareEmail)) {
+      this.error = true;
+      this.flashMessage = "Error: Please enter a valid email address."
+      this.messageFlash();
+    }
+    else if (this.objIter(this.emailObj,this.shareEmail)) {
+        this.error = true;
+        this.flashMessage = "Error: Email already in your shared list.";
+        this.messageFlash();
+      }
     else {
-      console.log(this.shareEmail);
+        this.sharedEmailList.push(this.shareEmail);
+        this.success = true;
+        this.flashMessage = "Success: Email added to shared list.";
+        this.messageFlash();
+        this.shareEmail = "";
+      }
+  }
+
+  //object loop
+  objIter(obj, value){
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        if(obj[key] == value)
+        //console.log(key + " " + obj[key]);
+        return true;
+      }
     }
+  }
+
+  //validate email
+  validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+
+  // Flash message on frontend for few seconds then remove it
+  messageFlash() {
     setTimeout(function() {
        this.error = false;
-       this.errorMessage = "";
+       this.success = false;
+       this.flashMessage = "";
        //console.log(this.error);
    }.bind(this), 1500);
   }

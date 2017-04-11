@@ -3,8 +3,14 @@
     <div class="col-sm-12">
 
       <div *ngIf="error" class="text-center alert alert-danger">
-        <p>{{errorMessage}}</p>
+        <p>{{flashMessage}}</p>
       </div>
+
+      <div *ngIf="success" class="text-center alert alert-success">
+        <p>{{flashMessage}}</p>
+      </div>
+
+
 
       <!-- PANEL FOR AUTHORIZED USER/ DISPLAYS WISHLIST AND ITEMS -->
       <div id="wishlistPanel" class="panel panel-default" [ngClass]="{'show-class' : afService.email == ownerEmail}">
@@ -29,7 +35,7 @@
 
       <!-- Share wishlist with other users-->
       <div id="share" class="text-center col-sm-6" [ngClass]="{'show-class' : afService.email == ownerEmail}">
-          <input id="newWishlistItemInput" #share type="text" placeholder="Enter friend's email (NOT WORKING YET)" [(ngModel)]="shareEmail" (keyup.enter)="shareWishlist()" required=""/>
+          <input id="newWishlistItemInput" #share type="email" placeholder="Enter friend's email (NOT WORKING YET)" [(ngModel)]="shareEmail" (keyup.enter)="shareWishlist()" required=""/>
           <button id="newWishlistItemButton" style="background-color: red;" (click)="shareWishlist()">Share</button>
       </div>
 
