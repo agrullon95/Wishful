@@ -22,7 +22,7 @@
           <li class="list-group-item">
             <input type="checkbox" id="completedItem" [(ngModel)]="item.completed" (change)="checkboxChange($event, item.$key)" *ngIf="editableToggle || afService.email == ownerEmail">
             <span id="itemName" [ngClass]="{'text-strike' : item.completed}">{{item.title}}</span>
-            <span (click)="deleteWishlistItem(item.$key)" id="deleteItem" *ngIf="editableToggle || afService.email == ownerEmail">&times;</span>
+            <span (click)="deleteWishlistItem(item.$key)" id="deleteItem" *ngIf="afService.email == ownerEmail">&times;</span>
           </li>
         </ul>
       </div>
