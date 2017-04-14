@@ -26,3 +26,8 @@
   color: red;
   font-size: 12px;
 }
+
+.show-class {
+  visibility: visible !important;
+  color: red !important;
+}

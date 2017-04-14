@@ -21,6 +21,8 @@ export class WishlistComponent implements OnInit {
   public completedToggle: false;
   public shareEmail: String;
   public emailObj: FirebaseObjectObservable<any>;
+  public sharedToggle: Boolean;
+  public editableToggle: Boolean;
 
   constructor(private afService: AF, private router: Router, private activatedRoute: ActivatedRoute) {
     let params: any = this.activatedRoute.snapshot.params;
@@ -29,22 +31,15 @@ export class WishlistComponent implements OnInit {
     this.afService.af.database.object('/wishlists/' + this.currentWishlistKey).$ref.once('value').then(snapshot => {
       this.title = snapshot.val().title;
       this.ownerEmail = snapshot.val().ownerEmail;
+      this.sharedToggle = snapshot.val().shared;
+      this.editableToggle = snapshot.val().editable;
       //console.log(this.title);
     });
 
-    // this.afService.af.database.object('/users').$ref.once('value').then(snapshot => {
-    //   console.log(snapshot.val());
-    //   for (var property in snapshot.val()) {
-    //     if (snapshot.val().hasOwnProperty(property)) {
-    //     console.log(snapshot.val()[property].email);
-    //     }
-    //   }
-    // });
-
-    this.afService.af.database.object('/wishlists/' + this.currentWishlistKey + '/shared').$ref.on('value', snapshot => {
+    this.afService.af.database.object('/wishlists/' + this.currentWishlistKey + '/sharedEmails').$ref.on('value', snapshot => {
       this.emailObj = snapshot.val();
     });
-    this.sharedEmailList = this.afService.af.database.list('/wishlists/' + this.currentWishlistKey + '/shared');
+    this.sharedEmailList = this.afService.af.database.list('/wishlists/' + this.currentWishlistKey + '/sharedEmails');
 
     this.items = this.afService.af.database.list('/wishlists/' + this.currentWishlistKey + '/items');
 
@@ -113,13 +108,16 @@ export class WishlistComponent implements OnInit {
 
   //object loop
   objIter(obj, value){
+    //console.log(obj);
     for (var key in obj) {
       if (obj.hasOwnProperty(key)) {
-        if(obj[key] == value)
+        if(obj[key] == value){
         //console.log(key + " " + obj[key]);
         return true;
+        }
       }
     }
+    return false;
   }
 
   //validate email

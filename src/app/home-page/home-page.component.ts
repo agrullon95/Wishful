@@ -16,6 +16,7 @@ export class HomePageComponent implements OnInit {
   public wishlists: FirebaseListObservable<any>;
   public newWishlist: string;
 
+
   constructor(public afService: AF) {
     // this.afService.af.auth.subscribe(auth => {
     //   // user info is inside auth object
@@ -44,6 +45,20 @@ export class HomePageComponent implements OnInit {
        this.error = false;
        //console.log(this.error);
    }.bind(this), 1000);
+  }
+
+  checkSharedList(wishlist, email) {
+    var obj = wishlist.sharedEmails;
+
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        if(obj[key] == email)
+        // console.log(key + " " + obj[key]);
+        return true;
+      }
+    }
+    return false;
+
   }
 
   ngOnInit() {

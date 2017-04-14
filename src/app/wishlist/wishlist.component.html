@@ -13,16 +13,16 @@
 
 
       <!-- PANEL FOR AUTHORIZED USER/ DISPLAYS WISHLIST AND ITEMS -->
-      <div id="wishlistPanel" class="panel panel-default" [ngClass]="{'show-class' : afService.email == ownerEmail}">
+      <div id="wishlistPanel" class="panel panel-default" [ngClass]="{'show-class' : afService.email == ownerEmail || objIter(emailObj, afService.email)}">
         <div class="panel-heading">
           <h1 class="panel-title text-center">{{title}}</h1>
         </div>
         <!-- List group for Wishlist items -->
         <ul class="list-group" *ngFor="let item of items | async">
           <li class="list-group-item">
-            <input type="checkbox" id="completedItem" [(ngModel)]="item.completed" (change)="checkboxChange($event, item.$key)">
+            <input type="checkbox" id="completedItem" [(ngModel)]="item.completed" (change)="checkboxChange($event, item.$key)" *ngIf="editableToggle || afService.email == ownerEmail">
             <span id="itemName" [ngClass]="{'text-strike' : item.completed}">{{item.title}}</span>
-            <span (click)="deleteWishlistItem(item.$key)" id="deleteItem">&times;</span>
+            <span (click)="deleteWishlistItem(item.$key)" id="deleteItem" *ngIf="editableToggle || afService.email == ownerEmail">&times;</span>
           </li>
         </ul>
       </div>
@@ -40,7 +40,7 @@
       </div>
 
       <!-- IF USER IS NOT AUTHORIZED TO VIEW WISHLIST, DISPLAY THIS TEXT-->
-      <div id="unauthorizedText" [ngClass]="{ 'show-class': afService.email != ownerEmail}">
+      <div id="unauthorizedText" [ngClass]="{ 'show-class': (afService.email != ownerEmail || !objIter(emailObj, afService.email)) && !sharedToggle }">
         <h1 style="text-align: center;">You are not authorized to view this page</h1>
       </div>
 

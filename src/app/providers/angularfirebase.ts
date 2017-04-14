@@ -124,7 +124,8 @@ export class AF {
       title: title,
       ownerEmail: this.email,
       ownerName: this.displayName,
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      shared: false
     };
     this.wishlists.push(wishlist);
   }

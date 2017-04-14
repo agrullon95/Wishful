@@ -14,7 +14,7 @@
         </div>
         <!-- List group for Wishlist titles -->
         <ul class="list-group" *ngFor="let wishlist of wishlists | async">
-          <li class="list-group-item" *ngIf="afService.email == wishlist.ownerEmail">
+          <li class="list-group-item" *ngIf="afService.email == wishlist.ownerEmail && !wishlist.shared">
             <a class="wishlistItem" [routerLink]="['/wishlists/', wishlist.$key]">{{ wishlist.title }}</a>
           </li>
         </ul>
@@ -68,12 +68,11 @@
           <h3 class="panel-title text-center">Shared Wishlists</h3>
         </div>
         <!-- List group -->
-        <ul class="list-group">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Morbi leo risus</li>
-          <li class="list-group-item">Porta ac consectetur ac</li>
-          <li class="list-group-item">Vestibulum at eros</li>
+        <ul class="list-group" *ngFor="let wishlist of wishlists | async">
+          <!-- <li class="list-group-item" [ngClass]="{'show-class' : (afService.email == wishlist.ownerEmail && wishlist.shared) || (wishlist.shared && checkSharedList(wishlist, afService.email)) }" [routerLink]="['/wishlists/', wishlist.$key]">{{ wishlist.title }}</li> -->
+          <li class="list-group-item" *ngIf="(afService.email == wishlist.ownerEmail && wishlist.shared) || (wishlist.shared && checkSharedList(wishlist, afService.email))">
+            <a class="wishlistItem" [routerLink]="['/wishlists/', wishlist.$key]">{{wishlist.title}}</a>
+          </li>
         </ul>
       </div>
     </div>
