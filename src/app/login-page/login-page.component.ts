@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
+import {AuthMethods , AngularFire} from 'angularfire2';
 import { AF } from '../providers/angularfirebase';
 
 
@@ -44,6 +45,10 @@ export class LoginPageComponent implements OnInit {
           console.log(this.error);
         }
       });
+  }
+
+  resetPass(email){
+    
   }
 
   ngOnInit(){

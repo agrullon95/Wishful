@@ -105,6 +105,11 @@
   color: #EF3B3A;
 }
 
+.pointer {
+  cursor: pointer;
+  color: #4CAF50;
+}
+
 /* Error message */
 
 .error {

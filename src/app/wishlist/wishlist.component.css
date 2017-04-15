@@ -7,8 +7,8 @@
   font-size: 18px;
 }
 
-#wishlistPanel, #unauthorizedText, #addItem, #share {
-  visibility: hidden;
+#unauthorizedText {
+  /*visibility: hidden;*/
 }
 
 #addItem, #share {
@@ -21,7 +21,7 @@
 
 #newWishlistItemInput {
   width: 70%;
-  border: 2px solid black;
+  border: 1px solid black;
   padding: 10px 10px;
   border-radius: 50px;
 }

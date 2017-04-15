@@ -28,7 +28,16 @@ export class WishlistComponent implements OnInit {
     let params: any = this.activatedRoute.snapshot.params;
     this.currentWishlistKey = params['wishlistKey'];
 
-    this.afService.af.database.object('/wishlists/' + this.currentWishlistKey).$ref.once('value').then(snapshot => {
+    // this.afService.af.database.object('/wishlists/' + this.currentWishlistKey).$ref.once('value').then(snapshot => {
+    //   this.title = snapshot.val().title;
+    //   this.ownerEmail = snapshot.val().ownerEmail;
+    //   this.sharedToggle = snapshot.val().shared;
+    //   this.editableToggle = snapshot.val().editable;
+    //   //console.log(this.title);
+    // });
+
+    // Retrieve values from database and watch for any changes
+    this.afService.af.database.object('/wishlists/' + this.currentWishlistKey).$ref.on('value', snapshot => {
       this.title = snapshot.val().title;
       this.ownerEmail = snapshot.val().ownerEmail;
       this.sharedToggle = snapshot.val().shared;
@@ -55,7 +64,9 @@ export class WishlistComponent implements OnInit {
     else {
       var newItem = {
         title: this.newWishlistItem,
-        completed: false
+        completed: false,
+        creatorName: "blank",
+        creatorEmail: this.afService.email
       }
       this.items.push(newItem);
       this.newWishlistItem = "";
@@ -69,14 +80,55 @@ export class WishlistComponent implements OnInit {
     this.items.remove(key);
   }
 
-  //change checkbox value
-  checkboxChange(e, key) {
+  //change checkbox value for specified item
+  checkboxItemChange(e, key, field) {
     var itemPath = this.afService.af.database.list('/wishlists/' + this.currentWishlistKey + '/items/' + key);
     if (e.target.checked) {
-      itemPath.$ref.ref.update({'completed' : true});
+
+      switch (field) {
+        case 'completed':
+          itemPath.$ref.ref.update({'completed': true});
+          break;
+      }
+
     }
     else {
-      itemPath.$ref.ref.update({'completed' : false});
+
+      switch (field) {
+        case 'completed':
+          itemPath.$ref.ref.update({'completed' : false});
+          break;
+      }
+
+    }
+  }
+
+  //change checkbox for wishlist field
+  checkboxWishlistChange(e, field) {
+    var wishlistPath = this.afService.af.database.list('/wishlists/' + this.currentWishlistKey);
+    if (e.target.checked) {
+
+      switch (field) {
+        case 'editable':
+          wishlistPath.$ref.ref.update({'editable': true});
+          break;
+        case 'shared':
+          wishlistPath.$ref.ref.update({'shared': true});
+          break;
+      }
+
+    }
+    else {
+
+      switch (field) {
+        case 'editable':
+          wishlistPath.$ref.ref.update({'editable' : false});
+          break;
+        case 'shared':
+          wishlistPath.$ref.ref.update({'shared': false});
+          break;
+      }
+
     }
   }
 

@@ -11,7 +11,6 @@ export class AF {
   public email: string;
   public user: FirebaseObjectObservable<any>;
   public wishlists: FirebaseListObservable<any>;
-  public singlewishlist: FirebaseListObservable<any>;
 
   constructor(public af: AngularFire) {
     this.af.auth.subscribe(
@@ -75,7 +74,7 @@ export class AF {
    * @returns {firebase.Promise<void>}
    */
   registerUser(email, password) {
-    console.log(email)
+    //console.log(email)
     return this.af.auth.createUser({
       email: email,
       password: password
@@ -91,7 +90,7 @@ export class AF {
    * @returns {firebase.Promise<void>}
    */
   saveUserInfoFromForm(uid, name, email) {
-    console.log(name);
+    //console.log(name);
     return this.af.database.object('registeredUsers/' + uid).set({
       name: name,
       email: email,
@@ -125,9 +124,17 @@ export class AF {
       ownerEmail: this.email,
       ownerName: this.displayName,
       timestamp: Date.now(),
-      shared: false
+      shared: false,
+      editable: false
     };
     this.wishlists.push(wishlist);
   }
+
+  /**
+   * Reset password
+   * @param email
+   */
+   sendPasswordResetToEmail(emailAddress) {
+   }
 
 } // End of export AF class

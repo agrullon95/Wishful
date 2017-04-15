@@ -2,6 +2,11 @@
   <div class="row">
     <div class="col-sm-12">
 
+      <div id="toggles" *ngIf="afService.email == ownerEmail">
+        <label><input type="checkbox" id="completedItem" [(ngModel)]="editableToggle" (change)="checkboxWishlistChange($event, 'editable')">Editable?</label>
+        <label><input type="checkbox" id="completedItem" [(ngModel)]="sharedToggle" (change)="checkboxWishlistChange($event, 'shared')">Shared?</label>
+      </div>
+
       <div *ngIf="error" class="text-center alert alert-danger">
         <p>{{flashMessage}}</p>
       </div>
@@ -13,34 +18,41 @@
 
 
       <!-- PANEL FOR AUTHORIZED USER/ DISPLAYS WISHLIST AND ITEMS -->
-      <div id="wishlistPanel" class="panel panel-default" [ngClass]="{'show-class' : afService.email == ownerEmail || objIter(emailObj, afService.email)}">
+      <!-- <div id="wishlistPanel" class="panel panel-default" [ngClass]="{'show-class' : afService.email == ownerEmail || objIter(emailObj, afService.email)}"> -->
+      <div id="wishlistPanel" class="panel panel-default" *ngIf="afService.email == ownerEmail || (objIter(emailObj, afService.email) && sharedToggle)">
         <div class="panel-heading">
           <h1 class="panel-title text-center">{{title}}</h1>
         </div>
         <!-- List group for Wishlist items -->
         <ul class="list-group" *ngFor="let item of items | async">
           <li class="list-group-item">
-            <input type="checkbox" id="completedItem" [(ngModel)]="item.completed" (change)="checkboxChange($event, item.$key)" *ngIf="editableToggle || afService.email == ownerEmail">
+            <input type="checkbox" id="completedItem" [(ngModel)]="item.completed" (change)="checkboxItemChange($event, item.$key, 'completed')" *ngIf="(afService.email == ownerEmail) || (editableToggle && afService.email == item.creatorEmail)">
             <span id="itemName" [ngClass]="{'text-strike' : item.completed}">{{item.title}}</span>
-            <span (click)="deleteWishlistItem(item.$key)" id="deleteItem" *ngIf="afService.email == ownerEmail">&times;</span>
+            <span (click)="deleteWishlistItem(item.$key)" id="deleteItem" *ngIf="afService.email == ownerEmail || afService.email == item.creatorEmail">&times;</span>
           </li>
         </ul>
       </div>
 
+
       <!-- Add item to wishlist -->
-      <div id="addItem" class="text-center col-sm-6" [ngClass]="{'show-class' : afService.email == ownerEmail}">
+      <div id="addItem" class="text-center col-sm-6" *ngIf="(afService.email == ownerEmail) || (editableToggle && (objIter(emailObj, afService.email)) && sharedToggle)">
           <input id="newWishlistItemInput" #item type="text" placeholder="Enter a new wishlist item" [(ngModel)]="newWishlistItem" (keyup.enter)="addWishlistItem()" required=""/>
           <button id="newWishlistItemButton" (click)="addWishlistItem()">Add</button>
       </div>
 
       <!-- Share wishlist with other users-->
-      <div id="share" class="text-center col-sm-6" [ngClass]="{'show-class' : afService.email == ownerEmail}">
-          <input id="newWishlistItemInput" #share type="email" placeholder="Enter friend's email (NOT WORKING YET)" [(ngModel)]="shareEmail" (keyup.enter)="shareWishlist()" required=""/>
+      <div id="share" class="text-center col-sm-6" *ngIf="afService.email == ownerEmail">
+          <input id="newWishlistItemInput" #share type="email" placeholder="Enter friend's email" [(ngModel)]="shareEmail" (keyup.enter)="shareWishlist()" required=""/>
           <button id="newWishlistItemButton" style="background-color: red;" (click)="shareWishlist()">Share</button>
       </div>
 
+      <!-- IF WISHLIST SHARED TOGGLE IS DISABLED-->
+      <div id="notSharedText" class="text-center col-sm-12" *ngIf="(afService.email != ownerEmail && !(objIter(emailObj, afService.email))) || (afService.email != ownerEmail && (objIter(emailObj, afService.email)) && !sharedToggle)">
+        <h1 style="text-align: center;">Creator has disabled shared access to this wishlist</h1>
+      </div>
+
       <!-- IF USER IS NOT AUTHORIZED TO VIEW WISHLIST, DISPLAY THIS TEXT-->
-      <div id="unauthorizedText" [ngClass]="{ 'show-class': (afService.email != ownerEmail || !objIter(emailObj, afService.email)) && !sharedToggle }">
+      <div id="unauthorizedText" class="text-center col-sm-12" *ngIf="(!(objIter(emailObj, afService.email)) && afService.email != ownerEmail)">
         <h1 style="text-align: center;">You are not authorized to view this page</h1>
       </div>
 
