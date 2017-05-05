@@ -64,4 +64,7 @@ export class HomePageComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngAfterViewInit() {
+  }
+
 }

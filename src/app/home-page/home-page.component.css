@@ -31,3 +31,8 @@
   visibility: visible !important;
   color: red !important;
 }
+
+.creator {
+  float: right;
+  font-size: 11px;
+}

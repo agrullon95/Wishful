@@ -20,7 +20,6 @@ export class AF {
         }
       });
 
-    //this.messages = this.af.database.list('messages');
     this.wishlists = this.af.database.list('wishlists');
     this.users = this.af.database.list('users');
   }
@@ -44,29 +43,15 @@ export class AF {
   }
 
   /**
-   *
+   * For Google Login
    */
   addUserInfo(){
     //We saved their auth info now save the rest to the db.
     this.users.push({
       email: this.email,
-      displayName: this.displayName
+      displayName: this.name
     });
   }
-
-  /**
-   * Saves a message to the Firebase Realtime Database
-   * @param text
-   */
-  // sendMessage(text) {
-  //   var message = {
-  //     message: text,
-  //     displayName: this.displayName,
-  //     email: this.email,
-  //     timestamp: Date.now()
-  //   };
-  //   this.messages.push(message);
-  // }
 
   /**
    *
@@ -84,7 +69,7 @@ export class AF {
   }
 
   /**
-   *
+   * Save other user info into database
    * @param uid
    * @param model
    * @returns {firebase.Promise<void>}
@@ -122,7 +107,7 @@ export class AF {
     var wishlist = {
       title: title,
       ownerEmail: this.email,
-      ownerName: this.displayName,
+      ownerName: this.name,
       timestamp: Date.now(),
       shared: false,
       editable: false

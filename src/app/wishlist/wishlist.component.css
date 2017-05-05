@@ -48,11 +48,11 @@
 }
 
 .hide-class {
-  visibility: hidden;
+  display: none;
 }
 
 .show-class {
-  visibility: visible !important;
+  display: block !important;
 }
 
 .text-strike {
@@ -64,3 +64,20 @@
   color: red;
   font-size: 12px;
 }*/
+
+#wishlistOwner {
+  float: right;
+  font-size: 12px;
+  top: 5px;
+  position: relative;
+}
+
+#toggles, #wishlistPanel, #notSharedText, #unauthorizedText, #addItem, #share {
+  /*display: none;*/
+}
+
+#toggles, #wishlistPanel, #addItem, #share {}
+
+#hideBeforeInit {
+  display:none;
+}

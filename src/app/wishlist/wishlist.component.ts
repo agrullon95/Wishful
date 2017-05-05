@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {Router, Params, ActivatedRoute} from "@angular/router";
 import { AF } from '../providers/angularfirebase';
 import {FirebaseListObservable, FirebaseObjectObservable} from "angularfire2";
@@ -8,7 +8,7 @@ import {FirebaseListObservable, FirebaseObjectObservable} from "angularfire2";
   templateUrl: './wishlist.component.html',
   styleUrls: ['./wishlist.component.css']
 })
-export class WishlistComponent implements OnInit {
+export class WishlistComponent implements OnInit, AfterViewInit {
   public error: Boolean;
   public success: Boolean;
   public flashMessage: String;
@@ -17,12 +17,14 @@ export class WishlistComponent implements OnInit {
   public currentWishlistKey: any;
   public title: FirebaseObjectObservable<any>;
   public ownerEmail: FirebaseObjectObservable<any>;
+  public ownerName: FirebaseObjectObservable<any>;
   public items: FirebaseListObservable<any>;
   public completedToggle: false;
   public shareEmail: String;
   public emailObj: FirebaseObjectObservable<any>;
   public sharedToggle: Boolean;
   public editableToggle: Boolean;
+  public pageLoaded: Boolean;
 
   constructor(private afService: AF, private router: Router, private activatedRoute: ActivatedRoute) {
     let params: any = this.activatedRoute.snapshot.params;
@@ -42,7 +44,8 @@ export class WishlistComponent implements OnInit {
       this.ownerEmail = snapshot.val().ownerEmail;
       this.sharedToggle = snapshot.val().shared;
       this.editableToggle = snapshot.val().editable;
-      //console.log(this.title);
+      this.ownerName = snapshot.val().ownerName;
+      //console.log(snapshot.val());
     });
 
     this.afService.af.database.object('/wishlists/' + this.currentWishlistKey + '/sharedEmails').$ref.on('value', snapshot => {
@@ -65,7 +68,7 @@ export class WishlistComponent implements OnInit {
       var newItem = {
         title: this.newWishlistItem,
         completed: false,
-        creatorName: "blank",
+        creatorName: this.afService.name,
         creatorEmail: this.afService.email
       }
       this.items.push(newItem);
@@ -188,7 +191,18 @@ export class WishlistComponent implements OnInit {
    }.bind(this), 1500);
   }
 
+  loadPageContent() {
+    setTimeout(function() {
+      this.pageLoaded = true;
+    }.bind(this), 1000);
+  }
+
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    this.loadPageContent();
+
   }
 
 

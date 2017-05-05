@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
-import {RouterModule, Routes} from "@angular/router";
+import { RouterModule, Routes } from "@angular/router";
 
 import { AF } from './providers/angularfirebase';
 
@@ -11,8 +11,10 @@ import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { RegistrationPageComponent } from './registration-page/registration-page.component';
-import { DropdownModule } from 'ng2-bootstrap/dropdown';
 import { WishlistComponent } from './wishlist/wishlist.component';
+
+import { PopoverModule } from 'ngx-bootstrap/popover';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAAY5UcFeq8wz0S4zaCh2oNIjDejaYTTUM",
@@ -44,7 +46,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FormsModule,
     HttpModule,
-    DropdownModule.forRoot()
+    PopoverModule.forRoot(),
+    BsDropdownModule.forRoot()
   ],
   providers: [AF],
   bootstrap: [AppComponent]
