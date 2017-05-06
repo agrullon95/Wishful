@@ -70,6 +70,7 @@
   font-size: 12px;
   top: 5px;
   position: relative;
+  line-height: 15px;
 }
 
 #toggles, #wishlistPanel, #notSharedText, #unauthorizedText, #addItem, #share {
@@ -80,4 +81,11 @@
 
 #hideBeforeInit {
   display:none;
+}
+
+.creatorName {
+  font-size: 12px;
+  float: right;
+  line-height: 20px;
+  margin-right: 10px;
 }

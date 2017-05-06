@@ -31,7 +31,9 @@
               id="itemName" [ngClass]="{'text-strike' : item.completed}">
               {{item.title}}
               </span>
+
               <span (click)="deleteWishlistItem(item.$key)" id="deleteItem" *ngIf="afService.email == ownerEmail || afService.email == item.creatorEmail">&times;</span>
+              <span class="creatorName">{{item.creatorName}}</span>
             </li>
           </ul>
         </div>
