@@ -34,6 +34,10 @@ export class AppComponent implements OnInit {
           else {
             this.afService.displayName = auth.auth.email;
             this.afService.email = auth.auth.email;
+            this.afService.af.database.list('/registeredUsers/' + auth.uid).$ref.once('value').then(snapshot => {
+              this.afService.name = snapshot.val().name;
+              //console.log(this.afService.name);
+            });
           }
 
           this.isLoggedIn = true;

@@ -34,10 +34,6 @@ export class LoginPageComponent implements OnInit {
     event.preventDefault();
     this.afService.loginWithEmail(email, password).then((user) => {
       //console.log(user);
-      this.afService.af.database.list('/registeredUsers/' + user.uid).$ref.once('value').then(snapshot => {
-        this.afService.name = snapshot.val().name;
-        console.log(this.afService.name);
-      });
       this.router.navigate(['']);
     })
       .catch((error: any) => {
