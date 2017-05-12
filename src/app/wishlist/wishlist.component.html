@@ -24,16 +24,22 @@
             <h1 class="panel-title text-center">{{title}}<span id="wishlistOwner">Created by: <br/>{{ownerName}}</span></h1>
           </div>
           <!-- List group for Wishlist items -->
-          <ul class="list-group" *ngFor="let item of items | async">
+          <ul class="list-group" *ngFor="let item of items | async; let i = index;">
             <li class="list-group-item">
               <input type="checkbox" id="completedItem" [(ngModel)]="item.completed" (change)="checkboxItemChange($event, item.$key, 'completed')" *ngIf="(afService.email == ownerEmail) || (editableToggle && afService.email == item.creatorEmail)">
               <span
-              id="itemName" [ngClass]="{'text-strike' : item.completed}">
+              id="itemName" [ngClass]="{'text-strike' : item.completed}" data-toggle="collapse" [attr.href]="'#collapse'+i">
               {{item.title}}
               </span>
 
               <span (click)="deleteWishlistItem(item.$key)" id="deleteItem" *ngIf="afService.email == ownerEmail || afService.email == item.creatorEmail">&times;</span>
               <span class="creatorName">{{item.creatorName}}</span>
+              <div [attr.id]="'collapse' + i " class="panel-collapse collapse">
+                <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                commodo consequat.</div>
+              </div>
             </li>
           </ul>
         </div>
