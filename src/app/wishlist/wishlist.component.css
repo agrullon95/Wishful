@@ -21,21 +21,30 @@
 
 #newWishlistItemInput {
   width: 70%;
-  border: 1px solid black;
+  border: 1px solid lightgray;
   padding: 10px 10px;
-  border-radius: 50px;
+  border-radius: 5px;
 }
 
-#newWishlistItemButton {
+#newWishlistItemButton, #shareButton{
   border-style: none;
   background-color: green;
   color: white;
   width: 20%;
-  border-radius: 50px;
+  border-radius: 5px;
+  height: 30px;
 }
 
 #newWishlistItemButton:hover {
   background-color: darkgreen;
+}
+
+#shareButton {
+  background-color: #DF0000;
+}
+
+#shareButton:hover {
+  background-color: darkred;
 }
 
 #deleteItem {

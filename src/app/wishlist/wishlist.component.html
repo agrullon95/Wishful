@@ -54,7 +54,7 @@
         <!-- Share wishlist with other users-->
         <div id="share" class="text-center col-sm-6" *ngIf="afService.email == ownerEmail">
             <input id="newWishlistItemInput" #share type="email" placeholder="Enter friend's email" [(ngModel)]="shareEmail" (keyup.enter)="shareWishlist()" required=""/>
-            <button id="newWishlistItemButton" style="background-color: red;" (click)="shareWishlist()">Share</button>
+            <button id="shareButton" (click)="shareWishlist()">Share</button>
         </div>
 
         <!-- IF WISHLIST SHARED TOGGLE IS DISABLED-->
