@@ -3,3 +3,7 @@
   /*font-family: 'Raleway', sans-serif;*/
   font-family: 'Roboto Condensed', sans-serif;
 }
+
+.panel {
+  border: 1px solid #FBFBFB;
+}

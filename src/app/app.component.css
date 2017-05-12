@@ -12,6 +12,13 @@
   border: none;
 }
 
+.app-content {
+  padding-top: 20px;
+  min-height: 700px;
+  /*background-image: url(http://bienalb.org/estranho/wp-content/uploads/2014/04/bg001.svg);*/
+  background-color: #FCFEFF;
+}
+
 /*
 Code snippet by maridlcrmn for Bootsnipp.com
 */
