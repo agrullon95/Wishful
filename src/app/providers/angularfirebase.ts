@@ -116,6 +116,20 @@ export class AF {
   }
 
   /**
+   * Saves a secret santa group to the Firebase Realtime Database
+   * @param title
+   */
+  createNewSecretSantaGroup(title) {
+    var secretSantaGroup = {
+      title: title,
+      ownerEmail: this.email,
+      ownerName: this.name,
+      timestamp: Date.now()
+    };
+    this.secretSantaGroups.push(secretSantaGroup);
+  }
+
+  /**
    * Reset password
    * @param email
    */
