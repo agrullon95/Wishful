@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+
+    <!-- Personal Wishlists -->
+    <div class="col-sm-12">
+      <h1 class="text-center">Create a new secret santa group</h1>
+      <div class="login-page">
+      <div class="form">
+        <form class="register-form" (submit)="register($event, name.value, email.value, password.value, passwordAgain.value)">
+          <input #name type="text" placeholder="Full name" required=""/>
+          <input #email type="text" placeholder="Email address" required=""/>
+          <input #password type="password" placeholder="Password" required=""/>
+          <input #passwordAgain type="password" placeholder="Enter password again" required=""/>
+          <button>Sign up</button>
+          <p class="message">Already registered? <a [routerLink]="['/login']">Login</a></p>
+          <div *ngIf="error" class="error">
+            {{error}}
+          </div>
+        </form>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</div>
