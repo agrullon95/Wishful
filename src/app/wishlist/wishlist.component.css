@@ -92,6 +92,13 @@
   display:none;
 }
 
+.creatorIcon {
+  float: right;
+  font-size: 10px;
+  line-height: 16px;
+  margin-right: 5px;
+}
+
 .creatorName {
   font-size: 12px;
   float: right;

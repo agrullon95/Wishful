@@ -11,6 +11,7 @@ export class AF {
   public email: string;
   public user: FirebaseObjectObservable<any>;
   public wishlists: FirebaseListObservable<any>;
+  public secretSantaGroups: FirebaseListObservable<any>;
 
   constructor(public af: AngularFire) {
     this.af.auth.subscribe(
@@ -22,6 +23,7 @@ export class AF {
 
     this.wishlists = this.af.database.list('wishlists');
     this.users = this.af.database.list('users');
+    this.secretSantaGroups = this.af.database.list('secretSantaGroups');
   }
 
   /**
