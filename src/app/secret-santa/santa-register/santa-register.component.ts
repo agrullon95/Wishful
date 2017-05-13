@@ -14,9 +14,11 @@ export class SantaRegisterComponent implements OnInit {
   public flashMessage: String;
   public error: Boolean;
   public success: Boolean;
+  public groups: FirebaseListObservable<any>;
 
   constructor(public afService: AF) {
 
+    this.groups = this.afService.secretSantaGroups;
   }
 
   // creates new Secret Santa group
