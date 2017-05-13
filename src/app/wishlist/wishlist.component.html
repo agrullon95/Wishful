@@ -21,7 +21,8 @@
         <!-- <div id="wishlistPanel" class="panel panel-default" [ngClass]="{'show-class' : afService.email == ownerEmail || objIter(emailObj, afService.email)}"> -->
         <div id="wishlistPanel" class="panel panel-default" *ngIf="afService.email == ownerEmail || (objIter(emailObj, afService.email) && sharedToggle)">
           <div class="panel-heading">
-            <h1 class="panel-title text-center">{{title}}<span id="wishlistOwner">Created by: <br/>{{ownerName}}</span></h1>
+            <h1 class="panel-title text-center">{{title}}</h1>
+            <p id="wishlistOwner">Created by: <br/>{{ownerName}}</p>
           </div>
           <!-- List group for Wishlist items -->
           <ul class="list-group" *ngFor="let item of items | async; let i = index;">
