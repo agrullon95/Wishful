@@ -15,6 +15,7 @@ export class SantaRegisterComponent implements OnInit {
   public error: Boolean;
   public success: Boolean;
   public groups: FirebaseListObservable<any>;
+  public groupName: String;
 
   constructor(public afService: AF) {
 
@@ -22,14 +23,15 @@ export class SantaRegisterComponent implements OnInit {
   }
 
   // creates new Secret Santa group
-  newSecretSantaGroup (event, groupName){
+  newSecretSantaGroup (event){
     event.preventDefault();
     //console.log(groupName);
     //console.log(this.checkBoxValue);
-    this.afService.createNewSecretSantaGroup(groupName);
+    this.afService.createNewSecretSantaGroup(this.groupName,this.checkBoxValue);
     this.success = true;
     this.flashMessage = "Success: Secret Santa has been created";
     this.messageFlash();
+    this.groupName = "";
   }
 
   // changes checkbox value

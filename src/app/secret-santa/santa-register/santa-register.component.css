@@ -47,3 +47,7 @@ hr {
   border: 5px solid lightgrey;
   margin-bottom: 50px;
 }
+
+a {
+  text-decoration: none;
+}

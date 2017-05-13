@@ -119,14 +119,15 @@ export class AF {
 
   /**
    * Saves a secret santa group to the Firebase Realtime Database
-   * @param title
+   * @param title, blindValue
    */
-  createNewSecretSantaGroup(title) {
+  createNewSecretSantaGroup(title, blindValue) {
     var secretSantaGroup = {
       title: title,
       ownerEmail: this.email,
       ownerName: this.name,
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      blind: blindValue
     };
     this.secretSantaGroups.push(secretSantaGroup);
   }

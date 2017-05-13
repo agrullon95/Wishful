@@ -14,8 +14,8 @@
       <h1 class="text-center">Create a new secret santa group</h1>
       <div class="login-page">
         <div class="form">
-          <form class="register-form" (submit)="newSecretSantaGroup($event, groupName.value)">
-            <input id="groupName" #groupName type="text" placeholder="Group Name" required=""/>
+          <form class="register-form" (submit)="newSecretSantaGroup($event)">
+            <input id="groupName" name="group" type="text" placeholder="Group Name" [(ngModel)]="groupName" required="" />
             <label class="checkbox-inline">
               <input type="checkbox" (change)="checkboxChange(value)"/>Blind Secret Santa?
             </label>
@@ -39,14 +39,6 @@
 <div class="container">
   <div class="row">
     <!-- List all Santa Groups for current user -->
-
-    <!-- <div class="col-sm-12">
-      <h3 class="text-center">
-        <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-        My secret santa groups
-        <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
-      </h3>
-    </div> -->
 
     <div class="col-sm-12 col-md-6 col-md-offset-3">
 
