@@ -31,10 +31,11 @@
         <div *ngIf="isLoggedIn" class="collapse navbar-collapse" id="navbar-collapse-2">
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <a class="btn btn-default btn-outline btn-circle" [routerLink]="['secret-santa/create']" data-toggle="collapse"  aria-expanded="false" aria-controls="nav-collapse2">Secret Santa</a>
+              <a class="btn btn-default btn-outline btn-circle" [routerLink]="['secret-santa/create']" aria-expanded="false" aria-controls="nav-collapse2">Secret Santa</a>
+              <!-- <a class="btn btn-default btn-outline btn-circle" [routerLink]="['secret-santa/create']" data-toggle="collapse" aria-expanded="false" aria-controls="nav-collapse2">Secret Santa</a> -->
             </li>
             <li>
-              <a class="btn btn-default btn-outline btn-circle" [routerLink]="['']" (click)="logout()" data-toggle="collapse"  aria-expanded="false" aria-controls="nav-collapse2">Log out</a>
+              <a class="btn btn-default btn-outline btn-circle" [routerLink]="['']" (click)="logout()" aria-expanded="false" aria-controls="nav-collapse2">Log out</a>
             </li>
           </ul>
         </div><!-- /.navbar-collapse -->
