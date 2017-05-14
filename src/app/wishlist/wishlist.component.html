@@ -32,10 +32,11 @@
               id="itemName" [ngClass]="{'text-strike' : item.completed}" data-toggle="collapse" [attr.href]="'#collapse'+i">
               {{item.title}}
               </span>
-
-              <span (click)="deleteWishlistItem(item.$key)" id="deleteItem" *ngIf="afService.email == ownerEmail || afService.email == item.creatorEmail">&times;</span>
-              <span class="creatorName">{{item.creatorName}}</span>
-              <span class="creatorIcon glyphicon glyphicon-user" aria-hidden="true"></span>
+              <div id="creatorInfo">
+                <span class="creatorIcon glyphicon glyphicon-user" aria-hidden="true"></span>
+                <span class="creatorName">{{item.creatorName}}</span>
+                <span (click)="deleteWishlistItem(item.$key)" id="deleteItem" *ngIf="afService.email == ownerEmail || afService.email == item.creatorEmail">&times;</span>
+              </div>
               <div [attr.id]="'collapse' + i " class="panel-collapse collapse">
                 <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
