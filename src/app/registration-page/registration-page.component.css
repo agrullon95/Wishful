@@ -19,7 +19,7 @@
 }
 
 .form input {
-  font-family: "Roboto", sans-serif;
+  /*font-family: "Roboto", sans-serif;*/
   outline: 0;
   background: #f2f2f2;
   width: 100%;
@@ -32,7 +32,7 @@
 
 /* Login buttons (email/password, google) */
 .form button, .form .oauth {
-  font-family: "Roboto", sans-serif;
+  /*font-family: "Roboto", sans-serif;*/
   text-transform: uppercase;
   outline: 0;
   background: blue;
