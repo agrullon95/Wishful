@@ -10,7 +10,20 @@ import { AF } from '../providers/angularfirebase';
 export class RegistrationPageComponent implements OnInit{
   public error: any;
 
-  constructor(private afService: AF, private router: Router) { }
+  constructor(private afService: AF, private router: Router) {
+
+    //authorization (user logged in) check
+    this.afService.af.auth.subscribe(
+      (auth) => {
+        if (auth) {
+          // if user is logged in, redirect to home page
+          this.router.navigate(['']);
+        }
+      }
+    );
+
+
+  }
 
   register(event, name, email, password, passwordAgain) {
     event.preventDefault();

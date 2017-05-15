@@ -19,13 +19,13 @@ export class AppComponent implements OnInit {
     this.afService.af.auth.subscribe(
       (auth) => {
         if(auth == null) {
-          console.log("Not Logged in.");
+          // console.log("Not Logged in.");
 
           this.isLoggedIn = false;
           this.router.navigate(['login']);
         }
         else {
-          console.log("Successfully Logged in.");
+          // console.log("Successfully Logged in.");
           // Set the Display Name and Email so we can attribute messages to them
           if(auth.google) {
             this.afService.displayName = auth.google.displayName;
