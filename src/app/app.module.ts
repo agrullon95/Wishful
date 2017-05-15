@@ -16,6 +16,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { SantaRegisterComponent } from './secret-santa/santa-register/santa-register.component';
+import { SantaWishlistComponent } from './secret-santa/santa-wishlist/santa-wishlist.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAAY5UcFeq8wz0S4zaCh2oNIjDejaYTTUM",
@@ -45,7 +46,8 @@ const routes: Routes = [
     HomePageComponent,
     RegistrationPageComponent,
     WishlistComponent,
-    SantaRegisterComponent
+    SantaRegisterComponent,
+    SantaWishlistComponent
   ],
   imports: [
     BrowserModule,
