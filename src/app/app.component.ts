@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AF } from './providers/angularfirebase';
 
@@ -52,6 +52,20 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    $(function () {
+
+      // Close mobile menu after clicking on menu item
+      $('.nav a').on('click', function(){
+        if($('.navbar-toggle').css('display') !='none'){
+            $(".navbar-toggle").trigger( "click" );
+        }
+      });
+
+
+    });
   }
 
 }
