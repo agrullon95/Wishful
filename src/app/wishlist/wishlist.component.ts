@@ -30,14 +30,6 @@ export class WishlistComponent implements OnInit, AfterViewInit {
     let params: any = this.activatedRoute.snapshot.params;
     this.currentWishlistKey = params['wishlistKey'];
 
-    // this.afService.af.database.object('/wishlists/' + this.currentWishlistKey).$ref.once('value').then(snapshot => {
-    //   this.title = snapshot.val().title;
-    //   this.ownerEmail = snapshot.val().ownerEmail;
-    //   this.sharedToggle = snapshot.val().shared;
-    //   this.editableToggle = snapshot.val().editable;
-    //   //console.log(this.title);
-    // });
-
     // Retrieve values from database and watch for any changes
     this.afService.af.database.object('/wishlists/' + this.currentWishlistKey).$ref.on('value', snapshot => {
       this.title = snapshot.val().title;

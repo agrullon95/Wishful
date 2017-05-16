@@ -34,7 +34,8 @@ const routes: Routes = [
   { path: 'wishlists/:wishlistKey', component: WishlistComponent},
   { path: 'secret-santa',
     children: [
-      { path: 'create', component: SantaRegisterComponent}
+      { path: 'create', component: SantaRegisterComponent},
+      { path: 'wishlists/:wishlistKey', component: SantaWishlistComponent}
     ]
   }
 ];
