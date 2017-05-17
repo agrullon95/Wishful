@@ -1,4 +1,38 @@
-<p class="text-center">
-  santa-wishlist works!
-  This is your wishlist key : {{currentWishlistKey}}
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <h1>Welcome to your Secret Santa group page</h1>
+      <h3>{{title}}</h3>
+    </div>
+    <div class="col-xs-12">
+
+      <div *ngIf="error" class="text-center alert alert-danger">
+        <p>{{flashMessage}}</p>
+      </div>
+
+      <div *ngIf="success" class="text-center alert alert-success">
+        <p>{{flashMessage}}</p>
+      </div>
+
+    </div>
+
+    <div class="col-xs-12">
+      <div id="share" class="text-center col-sm-12" *ngIf="afService.email == ownerEmail">
+          <input class="newWishlistItemInput" #share type="email" placeholder="Enter friend's email" [(ngModel)]="participantEmail" (keyup.enter)="addParticipant()" required=""/>
+          <button class="shareButton" (click)="addParticipant()">Add</button>
+      </div>
+    </div>
+
+    <div class="col-xs-12">
+      <button class="col-sm-12 shuffle" (click)="secretSantaGenerator()">Shuffle</button>
+    </div>
+
+    <div class="col-xs-12 text-center">
+      <p>
+        You are buying a gift for:
+        {{assignedTo}}
+      </p>
+    </div>
+
+  </div>
+</div>

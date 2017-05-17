@@ -1,0 +1,19 @@
+.newWishlistItemInput {
+  width: 70%;
+  border: 1px solid lightgray;
+  padding: 10px 10px;
+  border-radius: 5px;
+}
+
+.shareButton, .shuffle{
+  border-style: none;
+  background-color: green;
+  color: white;
+  width: 20%;
+  border-radius: 5px;
+  height: 30px;
+}
+
+.shareButton:hover, .shuffle:hover{
+  background-color: darkgreen;
+}
