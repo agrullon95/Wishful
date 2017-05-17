@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row" id="hideBeforeInit" [ngClass]="{'show-class' : pageLoaded}" *ngIf="afService.email == ownerEmail || (objIter(emailObj, afService.email) && sharedToggle)">
+  <div class="row" id="hideBeforeInit" [ngClass]="{'show-class' : pageLoaded}" *ngIf="afService.email == ownerEmail || (objIter(emailObj, afService.email))">
 
     <div class="col-xs-12 text-center">
       <h1>Welcome to your Secret Santa group page</h1>
