@@ -65,4 +65,9 @@
     </div> -->
 
   </div>
+
+  <!-- IF USER IS NOT AUTHORIZED TO VIEW, DISPLAY THIS TEXT-->
+  <div id="unauthorizedText" class="text-center col-sm-12" *ngIf="!objIter(emailObj, afService.email)">
+    <h1 style="text-align: center;">You are not authorized to view this page</h1>
+  </div>
 </div>
