@@ -54,6 +54,42 @@ export class SantaRegisterComponent implements OnInit {
    }.bind(this), 1500);
   }
 
+  decodeString(string) {
+    return decodeURIComponent(string);
+  }
+
+  checkGroupEmails() {
+    //console.log(this.groups);
+    // var newArr = new Array();
+    // for (var x = 0; x < this.groups.participants.length; x++) {
+    //   newArr.push(this.decodeString(this.groups.participants[x]));
+    // }
+    //
+    // for (var i = 0; i < newArr.length; i++){
+    //   if (this.afService.email == newArr[i]){
+    //     return true;
+    //   }
+    // }
+    //
+    // return false;
+
+  }
+
+  checkSharedList(wishlist, email) {
+    var obj = wishlist.participants;
+    
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        if(this.decodeString(obj[key]) == this.afService.email){
+          return true;
+        }
+      }
+    }
+
+    return false;
+
+  }
+
   ngOnInit() {
   }
 

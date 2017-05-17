@@ -52,7 +52,7 @@
         </div>
         <!-- List groups fo secret santa -->
         <ul class="list-group" *ngFor="let group of groups | async">
-          <li class="list-group-item" *ngIf="afService.email == group.ownerEmail">
+          <li class="list-group-item" *ngIf="afService.email == group.ownerEmail || checkSharedList(group, afService.email)">
             <a class="wishlistItem" [routerLink]="['/secret-santa/wishlists', group.$key]">{{ group.title }}</a>
           </li>
         </ul>
