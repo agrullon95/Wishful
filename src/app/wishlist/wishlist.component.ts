@@ -194,11 +194,6 @@ export class WishlistComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.loadPageContent();
-
-    $(function () {
-
-    });
-
   }
 
 

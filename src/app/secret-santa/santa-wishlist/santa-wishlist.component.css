@@ -17,3 +17,21 @@
 .shareButton:hover, .shuffle:hover{
   background-color: darkgreen;
 }
+
+.shuffle {
+  width: 100%;
+  height: 60px;
+  margin: 20px 0px;
+}
+
+.assignedName {
+  font-weight: bold;
+}
+
+#hideBeforeInit {
+  display:none;
+}
+
+.show-class {
+  display: block !important;
+}

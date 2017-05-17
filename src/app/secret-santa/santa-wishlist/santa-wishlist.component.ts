@@ -12,6 +12,7 @@ export class SantaWishlistComponent implements OnInit, AfterViewInit {
   public error: Boolean;
   public success: Boolean;
   public flashMessage: String;
+  public pageLoaded: Boolean;
 
   public currentWishlistKey: any;
 
@@ -27,6 +28,7 @@ export class SantaWishlistComponent implements OnInit, AfterViewInit {
   public shuffleResults: any;
   public emails: FirebaseObjectObservable<any>;
   public emailsArray: Array<any> = [];
+  public emailObj: Array<any> = [];
   public assignedTo: any;
 
 
@@ -44,6 +46,8 @@ export class SantaWishlistComponent implements OnInit, AfterViewInit {
       this.shuffled = snapshot.val().shuffled;
       this.results = snapshot.val().results;
       this.emails  = snapshot.val().participants;
+
+      this.emailObj = this.emailObjDecode(snapshot.val().participants);
       this.assignedTo = this.getAssignedPerson();
     });
 
@@ -168,14 +172,21 @@ export class SantaWishlistComponent implements OnInit, AfterViewInit {
       this.messageFlash();
     }
     else {
-      this.emailsArray.push(encoded);
+      if (!this.validateEmail(this.participantEmail)) {
+        this.error = true;
+        this.flashMessage = "Please enter a valid email";
+        this.messageFlash();
+      }
+      else {
+        this.emailsArray.push(encoded);
 
-      this.success = true;
-      this.flashMessage = "Email has been added to list";
-      this.messageFlash();
+        this.success = true;
+        this.flashMessage = "Email has been added to list";
+        this.messageFlash();
 
-      this.afService.af.database.object('/secretSantaGroups/' + this.currentWishlistKey + '/participants').$ref.set(this.emailsArray);
-      this.participantEmail = "";
+        this.afService.af.database.object('/secretSantaGroups/' + this.currentWishlistKey + '/participants').$ref.set(this.emailsArray);
+        this.participantEmail = "";
+      }
     }
 
   } // end of add participant function
@@ -204,11 +215,46 @@ export class SantaWishlistComponent implements OnInit, AfterViewInit {
 
   }
 
+  loadPageContent() {
+    setTimeout(function() {
+      this.pageLoaded = true;
+    }.bind(this), 1000);
+  }
+
+  emailObjDecode(emails) {
+    var newArr = new Array();
+    for (var i = 0; i < emails.length; i++) {
+      newArr.push(this.decodeString(emails[i]));
+    }
+    return newArr;
+  }
+
+  //object loop
+  objIter(obj, value){
+    //console.log(obj);
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        if(obj[key] == value){
+        //console.log(key + " " + obj[key]);
+        return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  //validate email
+  validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+
   ngOnInit() {
 
   }
 
   ngAfterViewInit() {
+    this.loadPageContent();
   }
 
 }
