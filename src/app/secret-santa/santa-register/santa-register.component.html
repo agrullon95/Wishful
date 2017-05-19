@@ -16,9 +16,9 @@
         <div class="form">
           <form class="register-form" (submit)="newSecretSantaGroup($event)">
             <input id="groupName" name="group" type="text" placeholder="Group Name" [(ngModel)]="groupName" required="" />
-            <label class="checkbox-inline">
+            <!-- <label class="checkbox-inline">
               <input type="checkbox" (change)="checkboxChange(value)"/>Blind Secret Santa?
-            </label>
+            </label> -->
             <br/>
             <br/>
             <button>Create Group</button>
@@ -52,7 +52,7 @@
         </div>
         <!-- List groups fo secret santa -->
         <ul class="list-group" *ngFor="let group of groups | async">
-          <li class="list-group-item" *ngIf="checkSharedList(group, afService.email)">
+          <li class="list-group-item" *ngIf="checkSharedList(group, afService.email) || group.ownerEmail == afService.email">
             <a class="wishlistItem" [routerLink]="['/secret-santa/wishlists', group.$key]">{{ group.title }}</a>
           </li>
         </ul>

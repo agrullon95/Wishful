@@ -10,7 +10,7 @@ import {FirebaseListObservable, FirebaseObjectObservable} from "angularfire2";
   styleUrls: ['./santa-register.component.css']
 })
 export class SantaRegisterComponent implements OnInit {
-  public checkBoxValue: boolean = false;
+  public checkBoxValue: boolean = true;
   public flashMessage: String;
   public error: Boolean;
   public success: Boolean;
