@@ -30,7 +30,7 @@
     </div>
 
     <div class="col-xs-12 text-center">
-      <p>
+      <p *ngIf="shuffled == true">
         You will be buying a gift for:
         <span class="assignedName">{{assignedTo}}</span>
       </p>

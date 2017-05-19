@@ -64,6 +64,14 @@ export class SantaWishlistComponent implements OnInit, AfterViewInit {
     result = {};
     equal = true;
 
+    // stop function if there are less than 3 users
+    if (list.length < 3){
+      this.error = true;
+      this.flashMessage = "You must share this list with 3 or more users in order to shuffle and assign each user";
+      this.messageFlash();
+      return;
+    }
+
     this.draw(list,participants, result, copy);
   }
 
