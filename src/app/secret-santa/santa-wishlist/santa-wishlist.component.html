@@ -36,38 +36,10 @@
       </p>
     </div>
 
-    <!-- <div id="wishlistPanel" class="panel panel-default">
-      <div class="panel-heading">
-        <h1 class="panel-title text-center">Gift Ideas</h1>
-      </div>
-      <ul class="list-group" *ngFor="let item of items | async; let i = index;">
-        <li class="list-group-item">
-          <div class="col-xs-12" style="margin-bottom: 10px;">
-            <input type="checkbox" class="col-xs-1 completedItem" [(ngModel)]="item.completed" (change)="checkboxItemChange($event, item.$key, 'completed')" *ngIf="(afService.email == ownerEmail) || (editableToggle && afService.email == item.creatorEmail)">
-            <span
-            class="col-xs-11 itemName" [ngClass]="{'text-strike' : item.completed}" data-toggle="collapse" [attr.href]="'#collapse'+i">
-            {{item.title}}
-            </span>
-          </div>
-          <div class="creatorInfo">
-            <span class="creatorIcon glyphicon glyphicon-user" aria-hidden="true"></span>
-            <span class="creatorName">{{item.creatorName}}</span>
-            <span (click)="deleteWishlistItem(item.$key)" class="deleteItem" *ngIf="afService.email == ownerEmail || afService.email == item.creatorEmail">&times;</span>
-          </div>
-          <div [attr.id]="'collapse' + i " class="panel-collapse collapse">
-            <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat.</div>
-          </div>
-        </li>
-      </ul>
-    </div> -->
-
   </div>
 
   <!-- IF USER IS NOT AUTHORIZED TO VIEW, DISPLAY THIS TEXT-->
-  <div id="unauthorizedText" class="text-center col-sm-12" *ngIf="!objIter(emailObj, afService.email)">
+  <div id="unauthorizedText" class="text-center col-sm-12" *ngIf="!objIter(emailObj, afService.email) || !ownerEmail">
     <h1 style="text-align: center;">You are not authorized to view this page</h1>
   </div>
 </div>

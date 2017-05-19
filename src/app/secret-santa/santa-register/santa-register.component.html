@@ -45,14 +45,14 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title text-center">
-            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+            <i class="fa fa-tree" aria-hidden="true"></i>
             My secret santa groups
-            <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+            <i class="fa fa-tree" aria-hidden="true"></i>
           </h3>
         </div>
         <!-- List groups fo secret santa -->
         <ul class="list-group" *ngFor="let group of groups | async">
-          <li class="list-group-item" *ngIf="afService.email == group.ownerEmail || checkSharedList(group, afService.email)">
+          <li class="list-group-item" *ngIf="checkSharedList(group, afService.email)">
             <a class="wishlistItem" [routerLink]="['/secret-santa/wishlists', group.$key]">{{ group.title }}</a>
           </li>
         </ul>
