@@ -127,7 +127,8 @@ export class AF {
       ownerEmail: this.email,
       ownerName: this.name,
       timestamp: Date.now(),
-      blind: blindValue
+      blind: blindValue,
+      participants: [encodeURIComponent(this.email).replace(/\./g, '%2E')]
     };
     this.secretSantaGroups.push(secretSantaGroup);
   }
