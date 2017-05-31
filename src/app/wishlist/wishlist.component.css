@@ -1,7 +1,20 @@
 /* Override */
+
+.panel {
+  border: 0;
+}
 .panel-title {
   font-size: 30px;
 }
+
+.panel-heading {
+  color: white;
+  background-color: #81CFE0;
+}
+
+/*:nth-child(2) {
+  background-color: rgba(217, 237, 247, 0.38);
+}*/
 
 .itemName {
   font-size: 18px;
@@ -30,23 +43,19 @@
 
 #newWishlistItemButton, #shareButton{
   border-style: none;
-  background-color: green;
+  background-color: #81CFE0;
   color: white;
   width: 20%;
   border-radius: 5px;
   height: 30px;
 }
 
-#newWishlistItemButton:hover {
-  background-color: darkgreen;
+#newWishlistItemButton:hover , #shareButton: hover{
+  background-color: #50909e;
 }
 
 #shareButton {
-  background-color: #DF0000;
-}
-
-#shareButton:hover {
-  background-color: darkred;
+  background-color: #81CFE0;
 }
 
 /*#deleteItem {

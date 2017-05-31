@@ -22,7 +22,10 @@
         <div id="wishlistPanel" class="panel panel-default" *ngIf="afService.email == ownerEmail || (objIter(emailObj, afService.email) && sharedToggle)">
           <div class="panel-heading">
             <h1 class="panel-title text-center">{{title}}</h1>
-            <p id="wishlistOwner">Created by: <br/>{{ownerName}}</p>
+            <p id="wishlistOwner">Created by: <br/>
+              <span *ngIf="afService.email == ownerEmail">{{ownerName}}</span>
+              <span *ngIf="afService.email != ownerEmail">{{ownerName}}</span>
+            </p>
           </div>
           <!-- List group for Wishlist items -->
           <ul class="list-group" *ngFor="let item of items | async; let i = index;">
@@ -36,7 +39,8 @@
               </div>
               <div class="creatorInfo">
                 <span class="creatorIcon glyphicon glyphicon-user" aria-hidden="true"></span>
-                <span class="creatorName">{{item.creatorName}}</span>
+                <span class="creatorName" *ngIf="afService.email == item.creatorEmail">Me</span>
+                <span class="creatorName" *ngIf="afService.email != item.creatorEmail">{{item.creatorName}}</span>
                 <span (click)="deleteWishlistItem(item.$key)" class="deleteItem" *ngIf="afService.email == ownerEmail || afService.email == item.creatorEmail">&times;</span>
               </div>
               <div [attr.id]="'collapse' + i " class="panel-collapse collapse">
@@ -71,7 +75,7 @@
         <div id="unauthorizedText" class="text-center col-sm-12" *ngIf="(!(objIter(emailObj, afService.email)) && afService.email != ownerEmail)">
           <h1 style="text-align: center;">You are not authorized to view this page</h1>
         </div>
-        
+
       </div>
     </div>
   </div>

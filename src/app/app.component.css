@@ -1,3 +1,7 @@
+.app-content {
+  background-color: rgba(240, 248, 255, 0.42);
+}
+
 #logout:hover {
     cursor: pointer;
     color: red;
@@ -29,13 +33,33 @@ Code snippet by maridlcrmn for Bootsnipp.com
   margin: 10px 2px;
 }
 .btn.btn-circle {
-  border-radius: 50px;
+  /*border-radius: 50px;*/
 }
 .btn.btn-outline {
-  background-color: transparent;
+  /*background-color: transparent;*/
+   background-color: #50909e;
+   border-color: #50909e;
+   color: white;
+}
+.navbar-default {
+  background-color: #81CFE0;
+}
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+  color: white;
+  background-color: black;
+  border: 1px solid black;
+}
+
+.navbar {
+  border-radius: 0;
 }
 
 @media screen and (max-width: 767px) {
+
+    .navbar {
+      border-radius: 0;
+    }
 
     .navbar .navbar-collapse .navbar-right > li {
       padding-left: 15px;
