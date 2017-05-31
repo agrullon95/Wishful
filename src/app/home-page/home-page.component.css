@@ -4,22 +4,23 @@
 
 #newWishlistInput {
   width: 70%;
-  border: 1px solid lightgray;
+  border: 0px;
+  background-color: #f2f2f2;
   padding: 10px 10px;
   border-radius: 5px;
 }
 
 #newWishlistButton {
   border-style: none;
-  background-color: green;
+  background-color: #81CFE0;
   color: white;
   width: 20%;
   border-radius: 5px;
   height: 30px;
 }
 
-#newWishlistButton:hover {
-  background-color: darkgreen;
+#newWishlistButton:hover, #newWishlistButton:focus {
+  background-color: #50909e;
 }
 
 .error {

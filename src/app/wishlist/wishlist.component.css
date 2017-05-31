@@ -36,9 +36,10 @@
 
 .newWishlistItemInput {
   width: 70%;
-  border: 1px solid lightgray;
+  border: 0px;
+  background-color: #ddd;
   padding: 10px 10px;
-  border-radius: 5px;
+  border-radius: 0px;
 }
 
 #newWishlistItemButton, #shareButton{
@@ -50,7 +51,7 @@
   height: 30px;
 }
 
-#newWishlistItemButton:hover , #shareButton: hover{
+#newWishlistItemButton:hover , #shareButton:hover, #newWishlistItemButton:focus, #shareButton:focus{
   background-color: #50909e;
 }
 
