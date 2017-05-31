@@ -3,7 +3,11 @@
 
     <div class="col-xs-12 text-center">
       <h1>Welcome to your Secret Santa group page</h1>
-      <h3>{{title}}</h3>
+      <h2>
+        <i class="fa fa-tree" aria-hidden="true"></i>
+        {{title}}
+        <i class="fa fa-tree" aria-hidden="true"></i>
+      </h2>
     </div>
 
     <div class="col-xs-12">
@@ -29,7 +33,7 @@
       <button class="shuffle" (click)="secretSantaGenerator()">Shuffle</button>
     </div>
 
-    <div class="col-xs-12 text-center">
+    <div class="col-xs-12 text-center assignClass">
       <p *ngIf="shuffled == true">
         You will be buying a gift for:
         <span class="assignedName">{{assignedTo}}</span>

@@ -4,9 +4,19 @@
       <h2><i>Welcome back {{ afService.email }}</i></h2>
     </div> -->
 
+    <div class="col-xs-12">
+      <div *ngIf="error" class="text-center alert alert-danger">
+        <p>{{flashMessage}}</p>
+      </div>
+
+      <div *ngIf="success" class="text-center alert alert-success">
+        <p>{{flashMessage}}</p>
+      </div>
+    </div>
+
 
     <!-- Personal Wishlists -->
-    <div class="col-xs-12 col-md-6">
+    <div class="col-xs-12 col-md-6 mSpace">
 
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -28,9 +38,6 @@
             <!-- </form> -->
           </li>
         </ul>
-        <div *ngIf="error" class="error text-center">
-          Invalid Input!
-        </div>
       </div>
 
       <!-- Add new wishlist modal -->
@@ -62,7 +69,7 @@
     </div>
 
     <!-- Shared Wishlists -->
-    <div class="col-xs-12 col-md-6">
+    <div class="col-xs-12 col-md-6 mSpace">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title text-center">Shared Wishlists</h3>

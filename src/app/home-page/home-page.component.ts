@@ -12,7 +12,10 @@ export class HomePageComponent implements OnInit {
 
   //public name: string;
   //public email: string;
-  public error: any;
+  //public error: any;
+  public error: Boolean;
+  public success: Boolean;
+  public flashMessage: String;
   public wishlists: FirebaseListObservable<any>;
   public newWishlist: string;
 
@@ -35,6 +38,8 @@ export class HomePageComponent implements OnInit {
   addWishlist(){
     if (this.newWishlist == null || this.newWishlist == ""){
       this.error = true;
+      this.flashMessage = "Please enter a valid wishlist name";
+      this.messageFlash();
       //console.log(this.error);
     }
     else {
@@ -59,6 +64,15 @@ export class HomePageComponent implements OnInit {
     }
     return false;
 
+  }
+
+  messageFlash() {
+    setTimeout(function() {
+       this.error = false;
+       this.success = false;
+       this.flashMessage = "";
+       //console.log(this.error);
+   }.bind(this), 1500);
   }
 
   ngOnInit() {

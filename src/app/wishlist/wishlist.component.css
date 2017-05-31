@@ -37,9 +37,9 @@
 .newWishlistItemInput {
   width: 70%;
   border: 0px;
-  background-color: #ddd;
+  background-color: white;
   padding: 10px 10px;
-  border-radius: 0px;
+  border-radius: 5px;
 }
 
 #newWishlistItemButton, #shareButton{
