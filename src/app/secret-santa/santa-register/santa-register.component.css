@@ -26,7 +26,7 @@
   /*font-family: "Roboto", sans-serif;*/
   text-transform: uppercase;
   outline: 0;
-  background: black;
+  background: #81CFE0;
   width: 70%;
   border: 0;
   padding: 15px;
@@ -54,4 +54,17 @@ a {
 
 i {
   color: green;
+}
+
+.login-page {
+  margin-top: 50px;
+}
+
+.panel-heading {
+  color: white;
+  background-color: #81CFE0;
+}
+
+.panel {
+  border: 0;
 }

@@ -1,5 +1,5 @@
 .app-content {
-  background-color: rgba(240, 248, 255, 0.42);
+  background-color: rgba(207, 231, 243, 0.48);
 }
 
 #logout:hover {
@@ -51,8 +51,16 @@ Code snippet by maridlcrmn for Bootsnipp.com
   border: 1px solid black;
 }
 
+.navbar-default .navbar-toggle {
+  border-color: #81CFE0;
+}
+
 .navbar {
   border-radius: 0;
+}
+
+.navbar-toggle:hover, .navbar-toggle:focus {
+  background-color: #81CFE0;
 }
 
 @media screen and (max-width: 767px) {

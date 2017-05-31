@@ -35,7 +35,7 @@
   /*font-family: "Roboto", sans-serif;*/
   text-transform: uppercase;
   outline: 0;
-  background: blue;
+  background: #81CFE0;
   width: 100%;
   border: 0;
   padding: 15px;
@@ -52,11 +52,11 @@
 }
 
 .form button:hover,.form button:active,.form button:focus {
-  background: black;
+  background: #50909e;
 }
 
 .form .oauth:hover,.form .oauth:active,.form .oauth:focus {
-  background: black;
+  background: #50909e;
 }
 
 .form .message {

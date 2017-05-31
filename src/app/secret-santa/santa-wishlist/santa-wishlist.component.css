@@ -7,7 +7,7 @@
 
 .shareButton, .shuffle{
   border-style: none;
-  background-color: green;
+  background-color: #81CFE0;
   color: white;
   width: 20%;
   border-radius: 5px;
@@ -15,7 +15,7 @@
 }
 
 .shareButton:hover, .shuffle:hover{
-  background-color: darkgreen;
+  background-color: #50909e;
 }
 
 .shuffle {
